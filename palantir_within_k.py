@@ -21,3 +21,17 @@ def duplicates(arr, k):
 		set[current] = current
 		
 	return false
+	
+def duplicates(arr, k, I):
+	set = {}
+	
+	for i in xrange(len(arr)):
+		if i > k:
+			del set[arr[i-k-1]/I]
+		if ((arr[i]/I) in set) or \
+		((arr[i]/I-1) in set and set[arr[i]/I-1] - arr[i] >= -I) or \
+		((arr[i]/I+1) in set and set[arr[i]/I+1] - arr[i] <= I):
+			return True
+		
+		set[arr[i]/I] = arr[i]
+	return False
